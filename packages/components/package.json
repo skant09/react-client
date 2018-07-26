@@ -2,8 +2,9 @@
   "name": "components",
   "version": "1.0.0",
   "description": "",
-  "main": "errorBoundary.js",
+  "main": "build/index",
   "scripts": {
+    "prepublish": "tsc -d",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -16,10 +16,12 @@
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "2.16.0",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^0.82.1"
   },
   "devDependencies": {
     "lerna": "^2.11.0",
+    "@types/isomorphic-fetch": "0.0.34",
     "@types/jest": "^23.3.0",
     "@types/node": "^10.5.2",
     "@types/react": "^16.4.6",
@@ -28,6 +30,8 @@
     "@types/react-router-dom": "^4.3.0",
     "@types/redux-logger": "^3.0.6",
     "eslint": "^5.2.0",
+    "redux-mock-store": "^1.5.3",
+    "jest": "^23.4.1",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
     "prettier": "^1.13.7",
