@@ -1,43 +1,12 @@
 import {LoginForm} from 'components';
 import * as React from 'react'
 import { Component } from 'react';
-import {connect} from 'react-redux'
-import * as Redux from 'redux';
 
+import {ILoginProps, IUser} from '../../types/user'
+import {postAPI} from '../../utils/api'
 import withErrorHandler from '../errorBoundary';
 
-// import { loginUser } from '../../api/auth';
-
-// import { setAlert } from '../../actions/alert';
-// import { setUserSession } from '../../actions/userSession';
-
-// import { formatUser } from '../../lib/utils';
-
-// import { lsTokenKey } from '../../constants';
-
-import { baseURL } from '../../config/env';
-export const authURL = `${baseURL}/auth`;
-export const loginUser = async (email: string, password: string) => {
-    try {
-      const response = await fetch(`${authURL}/login`, {
-        body: JSON.stringify({
-          email,
-          password
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: 'POST',
-      });
-      if(response.ok) {
-        return await response.json()
-      } else {
-        throw response
-      }
-    } catch (error) {
-      throw new Error(error)
-    }
-};
+export const loginUser = ({email, password}: {email: string, password: string}): Promise<IUser> => postAPI( '/auth', {email, password})
 
 function formatUser(user: IUser, token: string) {
   delete user.iat;
@@ -46,18 +15,6 @@ function formatUser(user: IUser, token: string) {
   return user;
 }
 
-export interface ILoginProps {
-  location: {pathname: string}
-  dispatch : Redux.Dispatch
-  history: string[]
-}
-
-export interface IUser {
-  iat: string
-  exp: string
-  token: string
-  from: string
-}
 class Login extends Component<ILoginProps> {
   public state = {
     disabled: false,
@@ -65,12 +22,12 @@ class Login extends Component<ILoginProps> {
     password: '',
   };
 
-  public onPressSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  public onPressSubmit = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
     this.setState({ disabled: true });
     // console.log(this.state.email, this.state.password);
     try {
-      const loginUserResponse = await loginUser(this.state.email, this.state.password);
+      const loginUserResponse = await loginUser({email:this.state.email, password:this.state.password});
       if (loginUserResponse) {
         this.setState({
           disabled: false
@@ -102,7 +59,7 @@ class Login extends Component<ILoginProps> {
     this.setState({ email: (event.target as HTMLInputElement).value });
   };
 
-  public updatePassword = (event: React.FormEvent) => {
+  public updatePassword = (event: React.SyntheticEvent) => {
     this.setState({ password: (event.target as HTMLInputElement).value });
   };
 
@@ -127,4 +84,4 @@ class Login extends Component<ILoginProps> {
   }
 }
 
-export default withErrorHandler(connect()(Login));
+export default withErrorHandler(Login);
