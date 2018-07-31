@@ -10,7 +10,7 @@ const bucketStore = 'store'; // store or cache
 const bugsnagKey = 'b7db508f4f7ce6917ad360fa12ca80fe';
 const appVersion = '0.1.0';
 
-const Env = 'localhost';
+const Env = 'localhost12';
 // const Env = 'live';
 
 // const clientUID = 'reve';
@@ -85,5 +85,5 @@ export {
   cloudfrontURL,
   parentBucket,
   socketUrl,
-  websocketURL
+  websocketURL,
 };

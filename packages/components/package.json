@@ -4,9 +4,12 @@
   "description": "",
   "main": "build/index",
   "scripts": {
-    "prepublish": "tsc -d",
+    "prepublish": "npx babel src --out-dir build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-react": "^6.24.1"
+  }
 }

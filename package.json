@@ -4,37 +4,42 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "precommit": "lint-staged"
   },
   "author": "",
   "license": "ISC",
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "dependencies": {
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-json": "^1.2.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-standard": "^3.1.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts-ts": "2.16.0",
+    "react-scripts": "^1.1.4",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.82.1"
   },
   "devDependencies": {
-    "lerna": "^2.11.0",
-    "@types/isomorphic-fetch": "0.0.34",
-    "@types/jest": "^23.3.0",
-    "@types/node": "^10.5.2",
-    "@types/react": "^16.4.6",
-    "@types/react-dom": "^16.0.6",
-    "@types/react-redux": "^6.0.4",
-    "@types/react-router-dom": "^4.3.0",
-    "@types/redux-logger": "^3.0.6",
+    "babel-cli": "^6.26.0",
     "eslint": "^5.2.0",
-    "redux-mock-store": "^1.5.3",
-    "jest": "^23.4.1",
     "husky": "^0.14.3",
+    "jest": "^23.4.1",
+    "lerna": "^2.11.0",
     "lint-staged": "^7.2.0",
     "prettier": "^1.13.7",
+    "redux-mock-store": "^1.5.3",
     "typescript": "^2.9.2"
   }
 }

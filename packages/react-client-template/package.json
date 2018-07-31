@@ -6,10 +6,10 @@
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "precommit": "lint-staged",
     "prettier": "prettier 'src/**/*.js'",
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "lint-staged": {
     "*.{js,json,css,md}": [
@@ -18,8 +18,10 @@
     ]
   },
   "dependencies": {
+    "babel-preset-react": "^6.24.1",
     "bugsnag-js": "^4.7.2",
     "components": "^1.0.0",
+    "react-scripts": "^1.1.4",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0"
   },

@@ -1,17 +1,13 @@
-import * as React from 'react' 
+import * as React from 'react';
 import { bugsnagClient } from '../config/bugsnag';
 
-interface IGeneralProps {
-  userSession: number;
-}
+const withErrorHandler = WrappedComponent => {
+  class WithErrorHandler extends React.Component {
+    state = { hasError: false };
 
-const withErrorHandler = <P extends object>(Component: React.ComponentType<P>): React.ComponentClass<P & IGeneralProps> => {
-  class WithErrorHandler extends React.Component<P & IGeneralProps> {
-    public state = { hasError: false };
-
-    public componentDidCatch(error: Error) {
+    componentDidCatch(error) {
       try {
-        const { userSession, ...data } = this.props as IGeneralProps;
+        const { userSession, ...data } = this.props;
         // Display fallback UI
         this.setState({ hasError: true });
         bugsnagClient.notify(error, {
@@ -20,11 +16,11 @@ const withErrorHandler = <P extends object>(Component: React.ComponentType<P>): 
           }
         });
       } catch (error) {
-        throw new Error(error)
+        throw new Error(error);
       }
     }
 
-    public render() {
+    render() {
       if (this.state.hasError) {
         // You can render any custom fallback UI
         return (
@@ -33,10 +29,12 @@ const withErrorHandler = <P extends object>(Component: React.ComponentType<P>): 
           </div>
         );
       }
-      return <Component />;
+      return <WrappedComponent />;
     }
   }
-  (WithErrorHandler as React.ComponentClass).displayName = `WithErrorHandler(${Component.displayName})`;
+  WithErrorHandler.displayName = `WithErrorHandler(${
+    WrappedComponent.displayName
+  })`;
   return WithErrorHandler;
 };
 
