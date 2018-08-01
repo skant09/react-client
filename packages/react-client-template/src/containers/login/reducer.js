@@ -68,7 +68,7 @@ export function submitForm(email, password) {
         );
         const from = this.props.location.pathname || '/';
         user.from = from;
-        dispatch({ payload: user, type: 'sdfsdf' });
+        dispatch({ type: 'sdfsdf' });
         localStorage.setItem('lsTokenKey', user.token);
         this.props.history.push('/');
       }

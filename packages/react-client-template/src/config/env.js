@@ -1,4 +1,4 @@
-let baseURL: string;
+let baseURL;
 let websocketURL;
 let parentBucket;
 let cloudfrontURL;
@@ -14,7 +14,7 @@ const Env = 'localhost12';
 // const Env = 'live';
 
 // const clientUID = 'reve';
-const clientUID: string = 'syook_hq';
+const clientUID = 'syook_hq';
 // const clientUID = 'hul_rajpura';
 // const clientUID = 'hul_demo';
 

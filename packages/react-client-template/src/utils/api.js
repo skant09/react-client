@@ -3,7 +3,7 @@ export const authURL = `${baseURL}/auth`;
 
 function handleErrors(response) {
   if (!response.ok) {
-    throw Error(response.statusText);
+    throw new Error(response.error || 500);
   }
   return response;
 }
@@ -16,7 +16,7 @@ async function fetchAPI(subUrl, body) {
     },
     method: 'GET',
   });
-  handleErrors(response);
+  response.json().then(handleErrors);
 }
 
 async function postAPI(subUrl, body) {
@@ -27,7 +27,7 @@ async function postAPI(subUrl, body) {
     },
     method: 'POST',
   });
-  handleErrors(response);
+  response.json().then(handleErrors);
 }
 
 export { fetchAPI, postAPI };
